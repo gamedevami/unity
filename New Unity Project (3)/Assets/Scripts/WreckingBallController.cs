@@ -8,7 +8,6 @@ using UnityEngine;
 public class WreckingBallController : MonoBehaviour {
     public float TotalSpeed;
     private Vector3 DirectionalSpeed;
-    private Vector3 mousePos;
     // Start is called before the first frame update
     void Start() {
 
@@ -16,11 +15,18 @@ public class WreckingBallController : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        mousePos.x = Input.mousePosition.x;
-        mousePos.y = Input.mousePosition.y;
-        mousePos.z = 10f;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        mousePos.y = 2f;
-        transform.position = Vector3.Lerp(transform.position, mousePos, Time.deltaTime);
+        Vector3 point = CreateStackTile.FindLowestTile().transform.position;
+        point.y = 5f;
+        transform.position = Vector3.Lerp(transform.position, point, Time.deltaTime);
+        // Destroy ball if right-clicked on
+        if(Input.GetButtonDown("Fire2")) {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out hit)) {
+                if(hit.transform.gameObject.tag == "WreckingBall") {
+                    Destroy(hit.transform.gameObject);
+                }
+            }
+        }
     }
 }
