@@ -14,16 +14,16 @@ public class moveme : MonoBehaviour {
         jump = new Vector3(0f, 1f, 0f);
     }
 
-    void OnCollisionStay() {
+    void OnTriggerStay() {
         isGrounded = true;
     }
-    void OnCollisionExit() {
+    void OnTriggerExit() {
         isGrounded = false;
     }
 
     void Update() {
-        bool isAPressed = Input.GetKeyDown(KeyCode.A);
-        bool isDPressed = Input.GetKeyDown(KeyCode.D);
+        bool isAPressed = Input.GetKey(KeyCode.A);
+        bool isDPressed = Input.GetKey(KeyCode.D);
         if(isGrounded && (isAPressed ^ isDPressed)) {
             isJumping = true;
             isGrounded = false;
