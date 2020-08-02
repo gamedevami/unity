@@ -9,7 +9,7 @@ public class NewBehaviourScript : MonoBehaviour
          if (other.gameObject.CompareTag("Player"))
          {
              other.gameObject.GetComponent<Rigidbody>
-                     ().AddForce(Vector3.up*speed);
+                     ().AddForce(Vector3.up * 3f);
          }
      }
 }
