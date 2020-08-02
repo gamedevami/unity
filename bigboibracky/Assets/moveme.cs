@@ -4,14 +4,14 @@ using System.Collections;
 public class moveme : MonoBehaviour {
 
     private Vector3 jump;
-    [SerializeField] private float jumpForce = 2.0f;
-    [SerializeField] private float speed = 0.5f;
+    [SerializeField] private float jumpForce = 0.4f;
+    [SerializeField] private float speed = 0.2f;
     private bool isJumping = false;
     private bool isGrounded = false;
     private Rigidbody rb;
     void Start() {
         rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0f, 1f, 0f);
+        jump = new Vector3(-0.4f, 0.2f, 0f);
     }
 
     void OnTriggerStay() {
